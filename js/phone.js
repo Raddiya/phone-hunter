@@ -1,6 +1,7 @@
 const searchPhone = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
+
     const errorShow = document.getElementById('error-text')
     errorShow.textContent = ''
 
@@ -34,7 +35,8 @@ const searchResult = data => {
                     <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="...">
                     <div class="card-body text-center">
                     <h4>${phone.brand}</h4>
-                        <h5 class="card-title text-center">${phone.phone_name}</h5>
+                        <h5 class="card-title text-center">
+                        ${phone.phone_name}</h5>
                      </div>
                     <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-primary  mx-auto w-25" type="button">Detail</button>
                 </div>
@@ -52,7 +54,7 @@ const loadPhoneDetail = phoneId => {
 
 }
 const displayPhoneDetail = phone => {
-    // console.log(phone);
+
     const phoneDetail = document.getElementById('more-details');
     phoneDetail.textContent = '';
     const div = document.createElement('div');
