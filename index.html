@@ -15,17 +15,19 @@
     <header>
         <h1 class="text-center text-info bg-dark m-4 ">Phone world BD!!!</h1>
         <!-- search area  -->
-        <div class="input-group w-50 mx-auto">
+        <div class="input-group w-50 mx-auto m-8">
             <input id="search-field" type="text" class="form-control" placeholder="Search Your Phone"
                 aria-label="Search phone" aria-describedby="button-addon2">
             <button onclick="searchPhone()" class="btn btn-outline-secondary " type="button"
                 id="search-button">Search</button>
         </div>
     </header>
+    <!-- error handle  -->
+    <h4 id="error-text" class="text-center text-danger m-4"></h4>
 
     <main>
         <!-- single phone details  -->
-        <div id="more-details" class="w-50 gap-3 p-4 m-4 mx-auto">
+        <div id="more-details" class="w-50  m-4 mx-auto">
         </div>
 
         <!-- search result  -->
