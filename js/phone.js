@@ -8,6 +8,8 @@ const searchPhone = () => {
     const displaySearch = document.getElementById('search-result');
     displaySearch.textContent = '';
 
+    phoneDetail = document.getElementById('more-details').textContent = ''
+
     if (searchText == '') {
         errorShow.innerHTML = "No phone found!!";
     }
@@ -47,6 +49,9 @@ const searchResult = data => {
     })
 }
 const loadPhoneDetail = phoneId => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    document.getElementById("more-details").innerHTML = "";
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(url)
         .then(res => res.json())
@@ -67,7 +72,13 @@ const displayPhoneDetail = phone => {
         <h4>  Release date:</h4>
         <p class="card-text">${phone.releaseDate ? phone.releaseDate : 'No release date found'}</p>
         <h4>  Others:</h4>
-        <p class="card-text">${phone.others.GPS} ${phone.others.USB} ${phone.others.Bluetooth} ${phone.others.WLAN}</p>
+            <div class="ms-3 mb-3">
+                <p class="mb-0 card-text">  ${phone.others?.GPS ? phone.others.GPS : "no data found"} </p>      
+                <p class="mb-0 card-text">  ${phone.others?.USB ? phone.others.USB : "no data found"}</p>
+                <p class="mb-0 card-text">  ${phone.others?.Bluetooth ? phone.others.Bluetooth : "no data found"} </p>
+                <p class="mb-0 card-text">  ${phone.others?.WLAN ? phone.others.WLAN : "no data found"}</p>
+            </div>
+        
         <h4> Sensor info:</h4>
         <p class="card-text">${phone.mainFeatures.sensors}</p>
     </div>
