@@ -11,7 +11,7 @@ const searchPhone = () => {
     phoneDetail = document.getElementById('more-details').textContent = ''
 
     if (searchText == '') {
-        errorShow.innerHTML = "No phone found!!";
+        errorShow.innerText = "Please full the input box!!";
     }
     else {
         // Clear data
@@ -27,26 +27,31 @@ const searchPhone = () => {
 const searchResult = data => {
     const displaySearch = document.getElementById('search-result');
     displaySearch.textContent = '';
+    if (data.length === 0) {
+        document.getElementById('error-text').innerText = "no data found!!";
+    } else {
+        data.slice(0, 20).forEach(phone => {
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = `
+            <div class="col">
+                    <div class="card bg-success p-2 text-white bg-opacity-50">
+                        <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="...">
+                        <div class="card-body text-center">
+                        <h4>${phone.brand}</h4>
+                            <h5 class="card-title text-center">
+                            ${phone.phone_name}</h5>
+                         </div>
+                        <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-primary  mx-auto w-25" type="button">Detail</button>
+                    </div>
+                    
+             </div>      
+            `;
+            displaySearch.appendChild(div);
+        })
+    }
 
-    data.slice(0, 20).forEach(phone => {
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML = `
-        <div class="col">
-                <div class="card bg-success p-2 text-white bg-opacity-50">
-                    <img src="${phone.image}" class="card-img-top w-50 mx-auto" alt="...">
-                    <div class="card-body text-center">
-                    <h4>${phone.brand}</h4>
-                        <h5 class="card-title text-center">
-                        ${phone.phone_name}</h5>
-                     </div>
-                    <button onclick="loadPhoneDetail('${phone.slug}')" class="btn btn-primary  mx-auto w-25" type="button">Detail</button>
-                </div>
-                
-         </div>      
-        `;
-        displaySearch.appendChild(div);
-    })
+
 }
 const loadPhoneDetail = phoneId => {
     document.body.scrollTop = 0;
